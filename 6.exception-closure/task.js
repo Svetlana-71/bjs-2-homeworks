@@ -45,10 +45,12 @@ function getTriangle(sideA, sideB, sideC) {
 	try {
 		return new Triangle(sideA, sideB, sideC);
 	} catch (error) {
-		return new Triangle(NaN, NaN, NaN);
-	};
+		 return Object = {}
+		};
 }
-  
+
+
+
 
 
 
