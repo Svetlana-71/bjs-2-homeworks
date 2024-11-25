@@ -24,30 +24,35 @@ class Triangle {
 		this.sideC = sideC;
 	}
 	get perimeter() {
-		if (this.sideA + this.sideB > this.sideC && this.sideA + this.sideC > this.sideB && this.sideB + this.sideC > this.sideA) {
-			return this.sideA + this.sideB + this.sideC;
-		} else {
-			return 'Ошибка! Треугольник не существует';
-		}
+		return this.sideA + this.sideB + this.sideC;  
 	}
 	get area() {
-		if (this.sideA + this.sideB > this.sideC && this.sideA + this.sideC > this.sideB && this.sideB + this.sideC > this.sideA) {
-			const semiPerimeter = (this.sideA + this.sideB + this.sideC) / 2;
-			const sq = Math.sqrt(semiPerimeter * (semiPerimeter - this.sideA) * (semiPerimeter - this.sideB) * (semiPerimeter - this.sideC));
-			return parseCount(sq.toFixed(3));
-		} else {
-			return 'Ошибка! Треугольник не существует';
-		}
+	const semiPerimeter = (this.sideA + this.sideB + this.sideC) / 2;
+	const  sq= Math.sqrt(semiPerimeter * (semiPerimeter - this.sideA) * (semiPerimeter - this.sideB) * (semiPerimeter - this.sideC));
+	return parseCount(sq.toFixed(3));
+	}   
+}
+
+function getTriangle(a, b, c) {
+	try {
+		return new Triangle(a, b, c);
+	} catch (e) {
+		return {			
+			get area() {
+			  return "Ошибка! Треугольник не существует";
+			},
+			get perimeter() {			  
+			  return  "Ошибка! Треугольник не существует";
+			}
+		};
 	}
 }
 
-function getTriangle(sideA, sideB, sideC) {
-	try {
-		return new Triangle(sideA, sideB, sideC);
-	} catch (error) {
-		 return Object = {}
-		};
-}
+	
+
+
+	
+
 
 
 
