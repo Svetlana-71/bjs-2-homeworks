@@ -8,22 +8,23 @@ class AlarmClock {
         throw new Error('Отсутствуют обязательные аргументы');
       }
       const currentTime = new Date();
-      if (time === currentTime) {
-        console.warn('Уже присутствует звонок на это же время');
-        return;
+      for(let time in this.alarmCollection) {
+        if(this.alarmCollection[time].time === time) {
+          console.warn('Уже присутствует звонок на это же время');
+          return;
+        }
       }
       this.alarmCollection.push({ callback, time, canCall: true });
     }
     removeClock(time) {
       this.alarmCollection = this.alarmCollection.filter(clock => clock.time!== time);
     }
-    getCurrentFormattedTime() {
-        const date = new Date();
-        const hours = String(date.getHours()).padStart(2, '0');
-        const minutes = String(date.getMinutes()).padStart(2, '0');
-        return `${hours}:${minutes}`;
-        
-      }
+    getCurrentFormattedTime() {  
+      return new Date().toLocaleTimeString("ru-Ru", {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+    }
     start() {
       if (this.intervalId) {
         clearInterval(this.intervalId);
