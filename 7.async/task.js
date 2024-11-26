@@ -7,12 +7,11 @@ class AlarmClock {
       if (!time ||!callback) {
         throw new Error('Отсутствуют обязательные аргументы');
       }
-      const currentTime = new Date();
-      for(let time in this.alarmCollection) {
-        if(this.alarmCollection[time].time === time) {
-          console.warn('Уже присутствует звонок на это же время');
+      for(let alarm of this.alarmCollection) {
+        if(alarm.time === this.time) {
+          console.warn('Уже присутствует звонок на это же время'); 
           return;
-        }
+        }      
       }
       this.alarmCollection.push({ callback, time, canCall: true });
     }
@@ -51,3 +50,5 @@ class AlarmClock {
       this.alarmCollection = [];
     }
   }
+  
+  
